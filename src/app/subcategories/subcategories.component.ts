@@ -20,7 +20,7 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
   constructor(private _AuthService: AuthService, private _SubcategoriesService: SubcategoriesService) { };
 
   loadSubcategories() {
-    this.subscription = this._SubcategoriesService.getSubcategories(50, this.page, '-createdAt', this.search).subscribe({
+    this.subscription = this._SubcategoriesService.getSubcategories(3, this.page, '-createdAt', this.search).subscribe({
       next: (res) => {
         this.subcategories = res.data;
         this.pagination = res.pagination;

@@ -21,7 +21,7 @@ export class CouponsComponent implements OnInit, OnDestroy {
   constructor(private _AuthService: AuthService, private _CouponsService: CouponsService) { }
 
   loadCoupons() {
-    this.subscription = this._CouponsService.getCoupons(50, this.page, '-createdAt', this.search).subscribe({
+    this.subscription = this._CouponsService.getCoupons(3, this.page, '-createdAt', this.search).subscribe({
       next: (res) => {
         this.coupons = res.data;
         this.pagination = res.pagination;

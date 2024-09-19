@@ -1,0 +1,58 @@
+// Main container
+.container {
+    background-color: #343a40; // Dark background for the section
+    color: #f8f9fa; // Light text color
+    padding: 2rem; // Add padding
+    border-radius: .5rem; // Rounded corners
+}
+
+// Heading and paragraph styling
+h1 {
+    font-size: 3rem; // Larger heading
+    margin-bottom: 1rem; // Margin below heading
+}
+
+p.lead {
+    font-size: 1.25rem; // Slightly larger text for the paragraph
+}
+
+// Card styling for featured categories and updates
+.bg-light {
+    background-color: #f8f9fa; // Light background for the cards
+    color: #343a40; // Dark text color
+}
+
+.text-dark {
+    color: #343a40; // Dark text color
+}
+
+.rounded {
+    border-radius: .5rem; // Rounded corners
+}
+
+.p-4 {
+    padding: 1.5rem; // Padding inside the cards
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075); // Small shadow for cards
+}
+
+// List styling
+ul.list-unstyled {
+    list-style: none; // Remove bullet points
+    padding-left: 0; // Remove padding
+}
+
+ul.list-unstyled li {
+    margin-bottom: .5rem; // Space between list items
+}
+
+a {
+    color: #343a40; // Dark color for links
+    text-decoration: none; // Remove underline
+}
+
+a:hover {
+    text-decoration: underline; // Underline on hover
+}

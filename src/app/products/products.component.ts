@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(private _AuthService: AuthService, private _ProductsService: ProductsService) { }
 
   loadProducts() {
-    this.subscription = this._ProductsService.getAllProducts(50, this.page, 'category subcategory name', this.search).subscribe({
+    this.subscription = this._ProductsService.getAllProducts(3, this.page, 'category subcategory name', this.search).subscribe({
       next: (res) => {
         this.products = res.data;
         this.pagination = res.pagination;

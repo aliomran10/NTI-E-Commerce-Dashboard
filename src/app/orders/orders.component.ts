@@ -21,7 +21,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   constructor(private _AuthService: AuthService, private _OrdersService: OrdersService, private _ProductsService: ProductsService) { }
 
   loadOrders() {
-    this.subscription = this._OrdersService.getOrders(50, this.page, '-createdAt', this.search).subscribe({
+    this.subscription = this._OrdersService.getOrders(3, this.page, '-createdAt', this.search).subscribe({
       next: (res) => {
         this.orders = res.data;
         this.pagination = res.pagination;

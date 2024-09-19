@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   constructor(private _AuthService: AuthService, private _CategoriesService: CategoriesService) { }
 
   loadCategories() {
-    this.subscription = this._CategoriesService.getCategories(50, this.page, '-createdAt', this.search).subscribe({
+    this.subscription = this._CategoriesService.getCategories(3, this.page, '-createdAt', this.search).subscribe({
       next: (res) => {
         this.categories = res.data;
         this.pagination = res.pagination;
