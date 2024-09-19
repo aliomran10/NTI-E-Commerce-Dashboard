@@ -1,0 +1,85 @@
+<div class="container w-75 my-5">
+    <!-- Header Section -->
+    <h2 class="text-center my-5">All Coupons</h2>
+    <hr class="my-3">
+
+    <!-- Action Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a class="btn btn-primary btn-lg" routerLink="create">
+            <i class="fas fa-plus me-2"></i> Create Coupon
+        </a>
+        <input (change)="searchData(searchInput.value)" #searchInput class="form-control w-25 rounded-pill"
+            type="search" placeholder="Search Coupons" aria-label="Search">
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped table-hover text-center align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Coupon Name</th>
+                <th>Discount</th>
+                <th>Expire Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(coupon of coupons; track coupon._id){
+            <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{coupon?._id | slice:-4}}</td>
+                <td>{{coupon?.name}}</td>
+                <td>{{coupon?.discount}}%</td>
+                <td>{{coupon?.expireTime | date}}</td>
+                <td>
+                    <a [routerLink]="['/coupons', coupon._id, 'update']"
+                        class="btn btn-primary btn-sm my-1 rounded-pill">
+                        <i class="fas fa-edit"></i> Update
+                    </a>
+                    <button (click)="deleteCoupon(coupon._id)" class="btn btn-danger btn-sm my-1 rounded-pill">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </td>
+            </tr>
+            }
+            @empty {
+            <tr>
+                <td colspan="6">
+                    <h3>No coupons found.</h3>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-5">
+        <ul class="pagination pagination-lg">
+            @if(pagination?.prev){
+            <li class="page-item">
+                <button (click)="changePage(pagination.prev)" class="page-link">Previous</button>
+            </li>
+            }
+            @if(pagination?.currentPage !== 1){
+            <li class="page-item">
+                <button (click)="changePage(1)" class="page-link">1</button>
+            </li>
+            }
+            <li class="page-item active">
+                <button class="page-link">{{pagination?.currentPage}}</button>
+            </li>
+            @if(pagination?.currentPage !== pagination?.totalPages){
+            <li class="page-item">
+                <button (click)="changePage(pagination.totalPages!)"
+                    class="page-link">{{pagination?.totalPages}}</button>
+            </li>
+            }
+            @if(pagination?.next){
+            <li class="page-item">
+                <button (click)="changePage(pagination.next)" class="page-link">Next</button>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

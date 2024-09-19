@@ -1,0 +1,60 @@
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input formControlName="email" type="email" class="form-control" id="email"
+                                placeholder="Enter your email">
+                            @if(loginForm.get('email')?.errors !== null && loginForm.get('email')?.touched){
+                            <div class="text-danger mt-2">
+                                @if(loginForm.get('email')?.errors?.['required']){<p>Email is Required</p>}
+                                @if(loginForm.get('email')?.errors?.['email']){<p>Invalid Email</p>}
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input formControlName="password" type="password" class="form-control" id="password"
+                                placeholder="Enter your password">
+                            @if(loginForm.get('password')?.errors !== null && loginForm.get('password')?.touched){
+                            <div class="text-danger mt-2">
+                                @if(loginForm.get('password')?.errors?.['required']){<p>Password is Required</p>}
+                                @if(loginForm.get('password')?.errors?.['minlength'] ||
+                                loginForm.get('password')?.errors?.['maxlength']){<p>Password Should be between 5 and
+                                    20 characters</p>}
+                            </div>
+                            }
+                        </div>
+
+                        @if(invalidLogin !== ''){
+                        <div class="text-danger mt-2">
+                            <p>{{invalidLogin}}</p>
+                        </div>
+                        }
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2 mb-3">
+                            <button [disabled]="loginForm.invalid" class="btn btn-primary btn-block">Login</button>
+                        </div>
+
+                        <!-- Forgot Password Link -->
+                        <div class="text-center">
+                            <a routerLink="/account/forgetPassword" class="forgot-password-link">Forgot your
+                                password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

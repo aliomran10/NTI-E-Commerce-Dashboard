@@ -1,0 +1,49 @@
+<br><br><br>
+<div class="w-50 mt-5 m-auto shadow p-4">
+    <h1 class="text-center">Update Coupon</h1>
+    <form [formGroup]="couponForm" (ngSubmit)="updateCoupon(coupon?._id,couponForm)">
+        <div class="p-3">
+            <label for="name" class="form-label">Coupon Name</label>
+            <input formControlName="name" class="form-control" id="name" type="name" [value]="coupon?.name"
+                placeholder="coupon name">
+            @if(couponForm.get('name')?.errors!==null&&couponForm.get('name')?.touched){
+            <div class="p-0 mt-3">
+                @if(couponForm.get('name')?.errors?.['required']){<p class="text-danger"> coupon name Required</p>}
+            </div>
+            }
+        </div>
+        <div class="p-3">
+            <label for="discount" class="form-label">Discount</label>
+            <input formControlName="discount" class="form-control" id="discount" type="number" [value]="coupon?.discount"
+                placeholder="discount">
+            @if(couponForm.get('discount')?.errors!==null&&couponForm.get('discount')?.touched){
+            <div class="p-0 mt-3">
+                @if(couponForm.get('discount')?.errors?.['required']){<p class="text-danger"> coupon discount Required
+                </p>}
+            </div>
+            }
+        </div>
+        <div class="p-3">
+            <label for="date" class="form-label">Expire Date</label>
+            <input formControlName="expireTime" class="form-control" id="date" type="date"
+                [value]="coupon?.expireTime|date:'yyyy-MM-dd'" placeholder="Expire Time">
+            @if(couponForm.get('expireTime')?.errors!==null&&couponForm.get('expireTime')?.touched){
+            <div class="p-0 mt-3">
+                @if(couponForm.get('expireTime')?.errors?.['required']){<p class="text-danger"> coupon expire Time
+                    Required</p>}
+            </div>
+            }
+            @if(couponError!==''){
+            <div class="text-danger mt-3">
+                <p>{{couponError}}</p>
+            </div>
+            }
+        </div>
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-center mt-4">
+            <button  class="btn btn-primary mx-3 px-4 py-2 rounded-pill shadow-sm">Update</button>
+            <a routerLink="/coupons" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Cancel</a>
+        </div>
+    </form>
+</div>
+<br><br><br>

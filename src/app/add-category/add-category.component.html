@@ -1,0 +1,33 @@
+<!-- Add Category Form -->
+<br><br><br>
+<div class="container w-50 mt-5 m-auto shadow-lg p-5 rounded-4 bg-light">
+    <h1 class="text-center mb-4">Add Category</h1>
+    <form [formGroup]="categoryForm" (ngSubmit)="createCategory(categoryForm)">
+        <div class="form-group mb-4">
+            <input formControlName="name" class="form-control rounded-pill shadow-sm p-3" type="text"
+                placeholder="Category Name">
+
+            <!-- Error Handling for Category Name -->
+            @if(categoryForm.get('name')?.errors && categoryForm.get('name')?.touched) {
+            <div class="mt-2">
+                @if(categoryForm.get('name')?.errors?.['required']) {
+                <small class="text-danger">Category name is required</small>
+                }
+            </div>
+            }
+
+            @if(categoryError !== '') {
+            <div class="text-danger mt-2">
+                <small>{{categoryError}}</small>
+            </div>
+            }
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-primary mx-3 px-4 py-2 rounded-pill shadow-sm">Create</button>
+            <a routerLink="/categories" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Cancel</a>
+        </div>
+    </form>
+</div>
+<br><br><br>

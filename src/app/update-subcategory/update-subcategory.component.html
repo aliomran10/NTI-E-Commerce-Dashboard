@@ -1,0 +1,32 @@
+<br><br><br>
+<div class="w-50 mt-5 m-auto shadow p-4">
+    <h1 class="text-center">update "{{subcategory.name}}" Subcategory</h1>
+    <form [formGroup]="subcategoryForm" (ngSubmit)="updateSubcategory(subcategory._id, subcategoryForm)">
+        <div class="p-3">
+            <label for="subcategory" class="form-label">Subcategory Name</label>
+            <input formControlName="name" class="form-control" id="subcategory" type="name" placeholder="subcategory name"
+                [value]="subcategory.name">
+        </div>
+        <div class="p-3">
+            <label for="category" class="form-label">Category</label>
+            <select formControlName="category" class="form-select" id="category" aria-label="Default select example">
+                <option disabled>Choose Category</option>
+                @for(category of categories; track category._id){
+                <option [value]="category?._id" [selected]="subcategory?.category?._id===category?._id">
+                    {{category?.name}}</option>
+                }
+            </select>
+            @if(subcategoryError!==''){
+            <div class="text-danger mt-3">
+                <p>{{subcategoryError}}</p>
+            </div>
+            }
+        </div>
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-primary mx-3 px-4 py-2 rounded-pill shadow-sm">Update</button>
+            <a routerLink="/coupons" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Cancel</a>
+        </div>
+    </form>
+</div>
+<br><br><br>

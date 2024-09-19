@@ -1,0 +1,90 @@
+<!-- Profile Information Section -->
+<div class="container my-5">
+    <h1 class="text-center mb-4">Profile Information</h1>
+    <div class="profile-container w-50 m-auto p-4 shadow-lg rounded-4 d-flex align-items-center">
+        <div class="w-25 text-center me-4">
+            <img class="w-75 rounded-4 shadow-sm" [src]="userImage+user.image" alt="userData.name">
+        </div>
+        <div class="w-75">
+            <div class="form-group my-4">
+                <label for="email" class="form-label fw-bold">Email:</label>
+                <p>{{user.email}}</p>
+            </div>
+            <div class="form-group my-4">
+                <label for="name" class="form-label fw-bold">Name:</label>
+                <input id="name" class="form-control rounded-pill" type="text" placeholder="name"
+                    (keyup)="(this.userName=name.value)" #name [value]="user.name">
+            </div>
+            <div class="form-group my-4">
+                <label for="profile-pic" class="form-label fw-bold">Profile Picture:</label>
+                <input id="profile-pic" class="form-control rounded-pill" (change)="getFile($event)" type="file"
+                    accept="image/*">
+            </div>
+            <div class="form-group my-4">
+                <button (click)="updateLoggedUser()" class="btn btn-primary w-100 rounded-pill">Update Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Divider -->
+<hr class="my-5">
+
+<!-- Change Password Section -->
+<div class="container my-5">
+    <h1 class="text-center mb-4">Change Password</h1>
+    <form [formGroup]="passwordForm" (ngSubmit)="changeUserPassword(passwordForm)"
+        class="w-50 m-auto shadow-lg p-4 rounded-4 bg-light">
+        <div class="form-group my-4">
+            <label for="currentPassword" class="form-label fw-bold">Current Password:</label>
+            <input id="currentPassword" formControlName="currentPassword" class="form-control rounded-pill"
+                type="password" placeholder="Current Password">
+            <div *ngIf="passwordForm.get('currentPassword')?.errors && passwordForm.get('currentPassword')?.touched"
+                class="text-danger mt-2">
+                <small *ngIf="passwordForm.get('currentPassword')?.errors?.['required']">Current password is
+                    required.</small>
+                <small
+                    *ngIf="passwordForm.get('currentPassword')?.errors?.['minlength'] || passwordForm.get('currentPassword')?.errors?.['maxlength']">Password
+                    must be between 6 and 20 characters.</small>
+            </div>
+            <div *ngIf="currentPasswordError" class="text-danger mt-2">
+                <small>{{currentPasswordError}}</small>
+            </div>
+        </div>
+
+        <div class="form-group my-4">
+            <label for="newPassword" class="form-label fw-bold">New Password:</label>
+            <input id="newPassword" formControlName="password" class="form-control rounded-pill" type="password"
+                placeholder="New Password">
+            <div *ngIf="passwordForm.get('password')?.errors && passwordForm.get('password')?.touched"
+                class="text-danger mt-2">
+                <small *ngIf="passwordForm.get('password')?.errors?.['required']">Password is required.</small>
+                <small
+                    *ngIf="passwordForm.get('password')?.errors?.['minlength'] || passwordForm.get('password')?.errors?.['maxlength']">Password
+                    must be between 6 and 20 characters.</small>
+            </div>
+        </div>
+
+        <div class="form-group my-4">
+            <label for="confirmPassword" class="form-label fw-bold">Confirm Password:</label>
+            <input id="confirmPassword" formControlName="confirmPassword" class="form-control rounded-pill"
+                type="password" placeholder="Confirm Password">
+            <div *ngIf="passwordForm.get('confirmPassword')?.errors && passwordForm.get('confirmPassword')?.touched"
+                class="text-danger mt-2">
+                <small *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']">Password confirmation is
+                    required.</small>
+                <small
+                    *ngIf="passwordForm.get('confirmPassword')?.errors?.['minlength'] || passwordForm.get('confirmPassword')?.errors?.['maxlength']">Confirm
+                    password must be between 6 and 20 characters.</small>
+            </div>
+            <div *ngIf="passwordError" class="text-danger mt-2">
+                <small>{{passwordError}}</small>
+            </div>
+        </div>
+
+        <div class="form-group my-4">
+            <button [disabled]="passwordForm.invalid" class="btn btn-primary w-100 rounded-pill">Update
+                Password</button>
+        </div>
+    </form>
+</div>

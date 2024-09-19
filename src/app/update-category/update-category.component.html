@@ -1,0 +1,27 @@
+<br><br><br>
+<div class="w-50 mt-5 m-auto shadow p-4">
+    <h1 class="text-center">Update "{{category.name}}" Category</h1>
+    <form [formGroup]="categoryForm" (ngSubmit)="updateCategory(category._id,categoryForm)">
+        <div class="p-3">
+            <label for="name" class="form-label">Category New Name</label>
+            <input formControlName="name" class="form-control" id="name" type="name" placeholder="category name"
+                [value]="category?.name">
+            @if(categoryForm.get('name')?.errors!==null&&categoryForm.get('name')?.touched &&categoryError===''){
+            <div class="p-0 mt-3">
+                @if(categoryForm.get('name')?.errors?.['required']){<p class="text-danger"> category name Required</p>}
+            </div>
+            }
+            @if(categoryError!==''){
+            <div class="text-danger mt-3">
+                <p>{{categoryError}}</p>
+            </div>
+            }
+        </div>
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-primary mx-3 px-4 py-2 rounded-pill shadow-sm">Update</button>
+            <a routerLink="/categories" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Cancel</a>
+        </div>
+    </form>
+</div>
+<br><br><br>

@@ -1,0 +1,65 @@
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+        <h5 class="text-white h4 mb-3">Menu</h5>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/home' routerLinkActive="active">
+                    <i class="fas fa-home me-2"></i> Home
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/categories' routerLinkActive="active">
+                    <i class="fas fa-list me-2"></i> Categories
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/subcategories' routerLinkActive="active">
+                    <i class="fas fa-th me-2"></i> Subcategories
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/products' routerLinkActive="active">
+                    <i class="fas fa-box me-2"></i> Products
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/coupons' routerLinkActive="active">
+                    <i class="fas fa-tag me-2"></i> Coupons
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/orders' routerLinkActive="active">
+                    <i class="fas fa-shopping-cart me-2"></i> Orders
+                </a>
+            </li>
+            <!-- Conditional Rendering for Manager Role -->
+            <ng-container *ngIf="user.role === 'manager'">
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" routerLink='/users' routerLinkActive="active">
+                        <i class="fas fa-users me-2"></i> Users
+                    </a>
+                </li>
+            </ng-container>
+            <li class="nav-item mb-2">
+                <a class="nav-link text-white" routerLink='/profile' routerLinkActive="active">
+                    <i class="fas fa-user me-2"></i> Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <button (click)="logout()" class="btn btn-link nav-link text-white">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
